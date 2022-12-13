@@ -173,31 +173,38 @@ statics/report online. User friendly interface better performance with DND filte
                         <p>Meet our satisfied Clients </p>
                     </div>
 					
-                    <div class="clients-logo wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms">
-                   <marquee behavior="alternate" >
-                    <div class="col-xs-3 col-sm-2">
-                            <a href="#"><img src="images/home/rgcsm.png" height="127" width="130" class="img-responsive" alt=""></a>
+                    <div class="clients-logo wow fadeIn"  data-wow-duration="1000ms" data-wow-delay="600ms">
+                    <marquee behavior="alternate" >
+                         <div class="col-xs-3 col-sm-2">
+                            <a href="#"><img class="img-circle img-thumbnail"  src="images/home/rgcsm.png"  height="130" width="130" class="img-responsive" alt=""></a>
+                             <a href="#"><p class="text-center">www.glitel.com</p></a>
                         </div>
                         <div class="col-xs-3 col-sm-2">
-                            <a href="#"><img src="images/home/ult.png"  height="127" width="130" class="img-responsive" alt=""></a>
+                            <a href="#"><img class="img-circle img-thumbnail"  src="images/home/ult.png"  height="130" width="130" class="img-responsive" alt=""></a>
+                            <a href="#"><p class="text-center">www.glitel.com</p></a>
                         </div>
                          <div class="col-xs-3 col-sm-2">
-                            <a href="#"><img src="images/home/sanatan.png" height="127" width="130" class="img-responsive" alt=""></a>
+                            <a href="#"><img class="img-circle img-thumbnail"  src="images/home/sanatan.png" height="130" width="130" class="img-responsive" alt=""></a>
+                            <a href="#"><p class="text-center">www.glitel.com</p></a>
                         </div>
                          <div class="col-xs-3 col-sm-2">
-                            <a href="#"><img src="images/home/giof.png" height="127" width="130" class="img-responsive" alt=""></a>
+                            <a href="#"><img class="img-circle img-thumbnail"  src="images/home/giof.png" height="130" width="130" class="img-responsive" alt=""></a>
+                             <a href="#"><p class="text-center">www.glitel.com</p></a>
                         </div>
                          <div class="col-xs-3 col-sm-2">
-                            <a href="#"><img src="images/home/psp.png" height="127" width="130" class="img-responsive" alt=""></a>
+                            <a href="#"><img class="img-circle img-thumbnail"  src="images/home/psp.png" height="130" width="130" class="img-responsive" alt=""></a>
+                            <a href="#"><p class="text-center">www.glitel.com</p></a>
                         </div>
                          <div class="col-xs-3 col-sm-2">
-                            <a href="#"><img src="images/home/pkiti.png" height="127" width="130" class="img-responsive" alt=""></a>
+                            <a href="#"><img class="img-circle img-thumbnail"  src="images/home/pkiti.png" height="130" width="130" class="img-responsive" alt=""></a>
+                            <a href="#"><p class="text-center">www.glitel.com</p></a>
                         </div>
                         <div class="col-xs-3 col-sm-2">
-                            <a href="#"><img src="images/home/savingnature.png" height="127" width="130" class="img-responsive" alt=""></a>
+                            <a href="#"><img class="img-circle img-thumbnail"  src="images/home/savingnature.png" height="130" width="130" class="img-responsive" alt=""></a>
+                            <a href="#"><p class="text-center">www.glitel.com</p></a>
                         </div>
+                    </marquee>
                     </div>
-</marquee>
 					
                 </div>
             </div>
