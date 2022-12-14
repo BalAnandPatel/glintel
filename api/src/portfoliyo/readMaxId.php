@@ -10,51 +10,45 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 // include database and object files
 include_once '../../config/database.php';
-include_once '../../objects/exam.php';
+include_once '../../object/Portfolyo.php';
   
 // instantiate database and product object
 $database = new Database();
 $db = $database->getConnection();
   
 // initialize object
-$exam = new exam($db);
+$portfoliyo = new Portfoliyo($db);
   
 $data = json_decode(file_get_contents("php://input"));
+// read products will be here
 
-$stmt = $exam->read_exam();
+// query products
+$stmt = $portfoliyo->readPortfoliyoMaxId();
 $num = $stmt->rowCount();
   
 // check if more than 0 record found
 if($num>0){
   
     // products array
-    $exams_arr=array();
-    $exams_arr["records"]=array();
+    $portfoliyos_arr=array();
+    $portfoliyos_arr["records"]=array();
 
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
      
         extract($row);
   
-        $exam_item=array(
+        $portfoliyo_item=array(
 
-            "id" => $id,
-            "exam_name"=>$exam_name,
-            "type"=>$type,
-            "result_date"=>$result_date,
-            "exam_date_start"=>$exam_date_start,
-            "admit_card_date"=>$admit_card_date,
-            "status"=>$status,
-            "created_by"=>$created_by,
-            "created_on"=>$created_on
-
-             );
+            "id"=>$id
+           
+        );
   
-        array_push($exams_arr["records"], $exam_item);
+        array_push($portfoliyos_arr["records"], $portfoliyo_item);
     }
   
     // show products data in json format
-    echo json_encode($exams_arr);
+    echo json_encode($portfoliyos_arr);
 
      // set response code - 200 OK
      http_response_code(200);

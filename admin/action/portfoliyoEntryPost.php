@@ -1,5 +1,6 @@
 <?php
 
+   
   include "../../constant.php";
 
   $clientName = ucwords($_POST['clientName']);
@@ -7,14 +8,14 @@
   $clientLogoTitle = $_POST['clientLogoTitle'];
   $clientUrl = $_POST['clientUrl'];
   $clientComment = ucfirst($_POST['clientComment']);
-  $clientPhoto = $_FILES['clientPhoto']['name'];
-  $clientLogo = $_FILES['clientLogo']['name'];
   $createdBy = "Admin";
   $status='1';
   $time=strtotime(date('Y-m-d H:i:s'));
-
+  $clientPhoto = $clientName."_".$clientMoble.".png";
+  $clientLogo = $clientName."_".$clientMoble."logo".".png";
 
   $url = $URL."portfoliyo/insertPortfoliyo.php";
+  $url_read_maxId = $URL."portfoliyo/readMaxId.php";
 
   $data = array(
    'clientName'=>$clientName,
@@ -27,82 +28,113 @@
    'status'=>$status,
    'createdBy'=>$createdBy, 
    'createdOn'=>$time
- );
+  );
 
   //print_r($data);
-
   $postdata = json_encode($data);
+  $portfoliyo_result=urlEncodeDecode($url,$postdata);
+  //print_r($portfoliyo_result);
+
+  if($portfoliyo_result->message=="Successfull"){
+
+   /* --- get maximum userid -----*/
+
+    $target_dir = "../images/portfoliyo/";
+    $path="../images/portfoliyo/".$clientMoble;
+    if (!is_dir($path)){
+    mkdir($path, 0777, true);
+     //echo "directory created";
+    }
+    else{ 
+     //echo "unable to create directory";
+    }
+
+    $target_file_photo = $path ."/". $clientName."_".$clientMoble.".png";
+    $target_file_logo = $path ."/". $clientName."_".$clientMoble."logo".".png";
+
+    $uploadOk = 1;
+    $imageFileTypePhoto = strtolower(pathinfo($target_file_photo,PATHINFO_EXTENSION));
+    $imageFileTypeLogo = strtolower(pathinfo($target_file_logo,PATHINFO_EXTENSION));
+
+    // Check if image file is a actual image or fake image
+    if(isset($_POST["submit"])) {
+     $check_photo = getimagesize($_FILES["clientPhoto"]["tmp_name"]);
+     $check_logo = getimagesize($_FILES["clientLogo"]["tmp_name"]);
+     if($check_photo !== false && $check_logo !== false) {
+        //echo "File is an image - ";
+        $uploadOk = 1;
+     } else {
+        //echo "File is not an image.";
+        $uploadOk = 0;
+      }
+    }
+
+
+   // // Check if file already exists
+   // if (file_exists($target_file_photo) || file_exists($target_file_logo) ){
+   // echo $msg = "Sorry, file already exists.";
+   // //$_SESSION['donation_post_error'] = $msg;
+   // $uploadOk = 0;
+   // }
+
+  //Check file size
+  if ($_FILES["clientPhoto"]["size"] > 5000000 || $_FILES["clientLogo"]["size"] > 5000000) {
+  $msg = "Sorry, your file is too large.";
+  //$_SESSION['donation_post_error'] = $msg;
+  //header('Location:../ourWork.php');
+  $uploadOk = 0;
+  }
+
+  
+  // Allow certain file formats
+  if($imageFileTypePhoto != "jpg" && $imageFileTypePhoto != "png" && $imageFileTypePhoto != "jpeg" && $imageFileTypeLogo != "jpg" && $imageFileTypeLogo != "png" && $imageFileTypeLogo != "jpeg") {
+  $msg = "Sorry, only JPG, JPEG & PNG  files are allowed.";
+  //$_SESSION['donation_post_error'] = $msg;
+  //header('Location:../ourWork.php');
+  $uploadOk = 0;
+  }   
+
+
+  // Check if $uploadOk is set to 0 by an error
+  if ($uploadOk == 0) {
+  $msg = "Sorry, your file was not uploaded.";
+  //header('Location:../ourWork.php');
+  // if everything is ok, try to upload file
+  } else {
+
+  if (move_uploaded_file($_FILES["clientPhoto"]["tmp_name"], $target_file_photo) && 
+   move_uploaded_file($_FILES["clientLogo"]["tmp_name"], $target_file_logo)) {
+
+  $msg = "The file has been uploaded";
+
+  //$_SESSION['donation_post'] = $msg;
+
+  }else{
+    $msg = "Sorry, there was an error uploading your file.";
+  }
+}
+  header('Location:../portfoliyoEntry.php');
+
+  }else{
+
+   $msg = "portfoliyo data is not inserted";
+   //header('Location:../ourWork.php');
+
+  }
+
+
+ function urlEncodeDecode($url,$postdata){
+
   $client= curl_init($url);
   curl_setopt($client, CURLOPT_POSTFIELDS, $postdata);
   curl_setopt($client,CURLOPT_RETURNTRANSFER,true);
   $response = curl_exec($client);
   //print_r($response);    
-  $result = json_decode($response);
-  print_r($result);
+  return $result = json_decode($response);
 
- //  $target_dir = "../images/team/";
-  
- //  $target_file = $target_dir . $name."_".$mobile.".png";
- //  $image = $name."_".$mobile.".png";  
-
- //  $uploadOk = 1;
- //  $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-
- //  // Check if image file is a actual image or fake image
- //  if(isset($_POST["submit"])) {
- //     $check = getimagesize($_FILES["image"]["tmp_name"]);
- //     if($check !== false) {
- //        //echo "File is an image - " . $check["mime"] . ".";
- //        $uploadOk = 1;
- //     } else {
- //        //echo "File is not an image.";
- //        $uploadOk = 0;
- //     }
- //   }
-
- //  // Check if file already exists
- //  if (file_exists($target_file)) {
- //  $msg = "Sorry, file already exists.";
- //  $msg = "Sorry, the team member already present.";
- //  $_SESSION['team_post_error'] = $msg;
-
- //  $uploadOk = 0;
- //  }
-
- //  // Allow certain file formats
- //  if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
- //  $msg = "Sorry, only JPG, JPEG & PNG  files are allowed.";
- //  $_SESSION['team_post_error'] = $msg;
- //  $uploadOk = 0;
- //  }
-
- // // Check file size
- //  if ($_FILES["image"]["size"] > 9000000) {
- //  $msg = "Sorry, your file is too large.";
- //  $_SESSION['team_post_error'] = $msg;
- //  $uploadOk = 0;
- //  }
-
- //  // Check if $uploadOk is set to 0 by an error
- //  if ($uploadOk == 0) {
- //   //$msg = "Sorry, your file was not uploaded.";
- //  header('Location:../ourTeam.php');
- //  // if everything is ok, try to upload file
- //  } else {
- //  if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+ }
 
 
- //  $msg = "The file has been uploaded. and ".$result->message;
 
- //  $_SESSION['team_post'] = $msg;
-
- //  } else {
- //    $msg = "Sorry, there was an error uploading your file.";
- //    $_SESSION['team_post_error'] = $msg;
- //  }
-
- //  header('Location:../ourTeam.php');
-
- // }
 
 ?>

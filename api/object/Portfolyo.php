@@ -12,8 +12,8 @@
     public $id,$clientName,$clientMoble,$clientLogo,$clientLogoTitle,$clientUrl,$clientComment,
     $clientPhoto,$status,$createdOn,$createdBy,$updatedOn,$created_by,$updatedBy;
 
-    public function read_exam(){
-        $query="Select  id,clientName,clientMoble,clientLogo, clientLogoTitle,clientUrl,clientComment, clientPhoto,status,createdOn,createdBy,updatedOn,updatedBy
+    public function readPortfoliyo(){
+      echo  $query="Select  id,clientName,clientMoble,clientLogo, clientLogoTitle,clientUrl,clientComment, clientPhoto,status,createdOn,createdBy,updatedOn,updatedBy
         from " .$this->table_name .  " where status=1";
         $stmt = $this->conn->prepare($query); 
         $stmt->execute();
@@ -64,6 +64,15 @@
     //     $stmt->execute();
     //     return $stmt;
     // }
+
+     function readPortfoliyoMaxId(){
+
+      echo  $query="Select max(id) as id from " . $this->table_name;
+        $stmt = $this->conn->prepare($query); 
+        $stmt->execute();
+        return $stmt;
+
+    }
 
     public function insertPortfoliyo(){
 

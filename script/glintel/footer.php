@@ -60,10 +60,27 @@
                         <h2>Send a message</h2>
                         <form id="main-contact-form" name="contact-form" method="post" action="script/sendemail.php">
                             <div class="form-group">
-                                <input type="text" name="name" class="form-control" autocomplete="off" required="required" placeholder="Name">
+                                <label for="cars">Service For</label>
+                                <select class="form-control" name="serviceName" required id="cars">
+                                <option value="Na" selected>Select a service</option>
+                                <option value="Website Design">Website Design</option>
+                                <option value="Desktop Application">Desktop Application</option>
+                                <option value="Mobile Application">Mobile Application</option>
+                                <option value="Logo Design">Logo Design</option>
+                                <option value="Website Maintenance">Website Maintenance</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="clientName" class="form-control" autocomplete="off" required="required" placeholder="Name">
+                            </div>
+                               <div class="form-group">
+                                <input type="number" name="moble" class="form-control" autocomplete="off" required="required" placeholder="Mobile No.">
                             </div>
                             <div class="form-group">
                                 <input type="email" name="email" class="form-control" autocomplete="off" required="required" placeholder="Email Id">
+                            </div>
+                             <div class="form-group">
+                                <input type="text" name="address" class="form-control" autocomplete="off" required="required" placeholder="Address">
                             </div>
                             <div class="form-group">
                                 <textarea name="message" id="message" required="required" autocomplete="off" class="form-control" rows="8" placeholder="Your text here"></textarea>

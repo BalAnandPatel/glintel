@@ -1,16 +1,17 @@
 <?php
- include "include/header.php";
-// $url = $URL."team/ourTeamRead.php";
-// $data = array();
-// //print_r($data);
-// $postdata = json_encode($data);
-// $client = curl_init($url);
-// curl_setopt($client,CURLOPT_RETURNTRANSFER,1);
-// curl_setopt($client, CURLOPT_POSTFIELDS, $postdata);
-// $response = curl_exec($client);
-// //print_r($response);
-// $result = json_decode($response);
-// //print_r($result);
+include "../constant.php";
+include "include/header.php";
+$url = $URL."portfoliyo/readPortfoliyo.php";
+$data = array();
+//print_r($data);
+$postdata = json_encode($data);
+$client = curl_init($url);
+curl_setopt($client,CURLOPT_RETURNTRANSFER,1);
+curl_setopt($client, CURLOPT_POSTFIELDS, $postdata);
+$response = curl_exec($client);
+print_r($response);
+$result = json_decode($response);
+print_r($result);
 
 ?>
  
