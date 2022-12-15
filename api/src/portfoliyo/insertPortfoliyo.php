@@ -22,9 +22,9 @@ $data = json_decode(file_get_contents("php://input"));
 //print_r($data);  
 // make sure data is not empty
 if(
-    true
-    // !empty($data->clientName) &&
-    // !empty($data->clientMoble)
+    
+     !empty($data->clientName) &&
+     !empty($data->clientMoble)
 )
 
 {
@@ -33,8 +33,6 @@ if(
     $portfoliyo->clientLogoTitle = $data->clientLogoTitle;
     $portfoliyo->clientUrl = $data->clientUrl;
     $portfoliyo->clientComment = $data->clientComment;
-    $portfoliyo->clientPhoto = $data->clientPhoto;
-    $portfoliyo->clientLogo = $data->clientLogo;
     $portfoliyo->status = $data->status;
     $portfoliyo->createdBy = $data->createdBy;
     $portfoliyo->createdOn = $data->createdOn;

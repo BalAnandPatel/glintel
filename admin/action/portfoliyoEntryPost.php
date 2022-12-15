@@ -11,11 +11,10 @@
   $createdBy = "Admin";
   $status='1';
   $time=strtotime(date('Y-m-d H:i:s'));
-  $clientPhoto = $clientName."_".$clientMoble.".png";
-  $clientLogo = $clientName."_".$clientMoble."logo".".png";
+
 
   $url = $URL."portfoliyo/insertPortfoliyo.php";
-  $url_read_maxId = $URL."portfoliyo/readMaxId.php";
+  $urlReadMaxId = $URL."portfoliyo/readMaxId.php";
 
   $data = array(
    'clientName'=>$clientName,
@@ -23,8 +22,6 @@
    'clientLogoTitle'=>$clientLogoTitle,
    'clientUrl'=>$clientUrl,
    'clientComment'=>$clientComment, 
-   'clientPhoto'=>$clientPhoto,
-   'clientLogo'=>$clientLogo,
    'status'=>$status,
    'createdBy'=>$createdBy, 
    'createdOn'=>$time
@@ -37,10 +34,17 @@
 
   if($portfoliyo_result->message=="Successfull"){
 
-   /* --- get maximum userid -----*/
+   /* --- get maximum portfoliyo's id -----*/
+
+    $dataMaxId = array();
+    //print_r($dataMaxId);
+    $postdataMaxId = json_encode($dataMaxId);
+    $MaxId_result=urlEncodeDecode($urlReadMaxId,$postdataMaxId);
+    //print_r($MaxId_result);
+    $id=$MaxId_result->records[0]->id;
 
     $target_dir = "../images/portfoliyo/";
-    $path="../images/portfoliyo/".$clientMoble;
+    $path="../images/portfoliyo/".$id;
     if (!is_dir($path)){
     mkdir($path, 0777, true);
      //echo "directory created";
@@ -49,8 +53,8 @@
      //echo "unable to create directory";
     }
 
-    $target_file_photo = $path ."/". $clientName."_".$clientMoble.".png";
-    $target_file_logo = $path ."/". $clientName."_".$clientMoble."logo".".png";
+    $target_file_photo = $path ."/"."photo_".$id.".png";
+    $target_file_logo = $path ."/"."logo_".$id.".png";
 
     $uploadOk = 1;
     $imageFileTypePhoto = strtolower(pathinfo($target_file_photo,PATHINFO_EXTENSION));
@@ -118,7 +122,7 @@
   }else{
 
    $msg = "portfoliyo data is not inserted";
-   //header('Location:../ourWork.php');
+   header('Location:../portfoliyoEntry.php');
 
   }
 

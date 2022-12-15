@@ -13,7 +13,7 @@
     $clientPhoto,$status,$createdOn,$createdBy,$updatedOn,$created_by,$updatedBy;
 
     public function readPortfoliyo(){
-      echo  $query="Select  id,clientName,clientMoble,clientLogo, clientLogoTitle,clientUrl,clientComment, clientPhoto,status,createdOn,createdBy,updatedOn,updatedBy
+       $query="Select  id,clientName,clientMoble,clientLogo, clientLogoTitle,clientUrl,clientComment, clientPhoto,status,createdOn,createdBy,updatedOn,updatedBy
         from " .$this->table_name .  " where status=1";
         $stmt = $this->conn->prepare($query); 
         $stmt->execute();
@@ -67,7 +67,7 @@
 
      function readPortfoliyoMaxId(){
 
-      echo  $query="Select max(id) as id from " . $this->table_name;
+        $query="Select max(id) as id from " . $this->table_name;
         $stmt = $this->conn->prepare($query); 
         $stmt->execute();
         return $stmt;
@@ -81,11 +81,9 @@
     SET
              clientName=:clientName,
              clientMoble=:clientMoble,
-             clientLogo=:clientLogo, 
              clientLogoTitle=:clientLogoTitle,
              clientUrl=:clientUrl,
              clientComment=:clientComment,
-             clientPhoto=:clientPhoto,
              status=:status,
              createdOn=:createdOn,
              createdBy=:createdBy
@@ -94,23 +92,19 @@
         $stmt = $this->conn->prepare($query);
         $this->clientName=htmlspecialchars(strip_tags($this->clientName));
         $this->clientMoble=htmlspecialchars(strip_tags($this->clientMoble));
-        $this->clientLogo=htmlspecialchars(strip_tags($this->clientLogo));
         $this->clientLogoTitle=htmlspecialchars(strip_tags($this->clientLogoTitle));
         $this->clientUrl=htmlspecialchars(strip_tags($this->clientUrl));
         $this->clientComment=htmlspecialchars(strip_tags($this->clientComment));
         $this->status=htmlspecialchars(strip_tags($this->status));
-        $this->clientPhoto=htmlspecialchars(strip_tags($this->clientPhoto));
         $this->createdOn=htmlspecialchars(strip_tags($this->createdOn));
         $this->createdBy=htmlspecialchars(strip_tags($this->createdBy));
 
 
         $stmt->bindParam(":clientName", $this->clientName);
         $stmt->bindParam(":clientMoble", $this->clientMoble);
-        $stmt->bindParam(":clientLogo", $this->clientLogo);
         $stmt->bindParam(":clientLogoTitle", $this->clientLogoTitle);
         $stmt->bindParam(":clientUrl", $this->clientUrl);
         $stmt->bindParam(":clientComment", $this->clientComment);
-        $stmt->bindParam(":clientPhoto", $this->clientPhoto);
         $stmt->bindParam(":status", $this->status);
         $stmt->bindParam(":createdOn", $this->createdOn);
         $stmt->bindParam(":createdBy", $this->createdBy);
@@ -186,7 +180,7 @@
     }
 
 
-   function delete_exam(){
+   function deletePortfoliyo(){
   
     // delete query
     $query = " DELETE FROM " . $this->table_name . " 

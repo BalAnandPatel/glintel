@@ -162,7 +162,22 @@ statics/report online. User friendly interface better performance with DND filte
            </div>
          </section>       
      
-
+         <?php
+           include "constant.php";
+           $url = $URL."portfoliyo/readPortfoliyo.php";
+           $data = array();
+           //print_r($data);
+           $postdata = json_encode($data);
+           $client = curl_init($url);
+           curl_setopt($client,CURLOPT_RETURNTRANSFER,1);
+           curl_setopt($client, CURLOPT_POSTFIELDS, $postdata);
+           $response = curl_exec($client);
+           //print_r($response);
+           $result = json_decode($response);
+           //print_r($result);
+ 
+           $imagepath = "admin/images/portfoliyo/";
+          ?>
     <section id="clients">
         <div class="container">
             <div class="row">
@@ -175,34 +190,21 @@ statics/report online. User friendly interface better performance with DND filte
 					
                     <div class="clients-logo wow fadeIn"  data-wow-duration="1000ms" data-wow-delay="600ms">
                     <marquee behavior="alternate" >
+                           <?php 
+                             $counter=0;  
+                             foreach($result as $key => $value){
+                             foreach($value as $key1 => $value1)
+                            {
+                           ?>
                          <div class="col-xs-3 col-sm-2">
-                            <a href="#"><img class="img-circle img-thumbnail"  src="images/home/rgcsm.png"  height="130" width="130" class="img-responsive" alt=""></a>
-                             <a href="#"><p class="text-center">www.glitel.com</p></a>
+                            <a href="#"><img class="img-circle img-thumbnail"  
+                            src="<?php $id=$value1->id; echo $imagepath.$id."/logo_".$id.".png"; ?>"  
+                            height="130" width="130" class="img-responsive" alt=""></a>
+                            <a href="<?php echo $value1->clientUrl; ?>" target="_blank">
+                            <p class="text-center"><?php echo $value1->clientLogoTitle; ?></p>
+                            </a>
                         </div>
-                        <div class="col-xs-3 col-sm-2">
-                            <a href="#"><img class="img-circle img-thumbnail"  src="images/home/ult.png"  height="130" width="130" class="img-responsive" alt=""></a>
-                            <a href="#"><p class="text-center">www.glitel.com</p></a>
-                        </div>
-                         <div class="col-xs-3 col-sm-2">
-                            <a href="#"><img class="img-circle img-thumbnail"  src="images/home/sanatan.png" height="130" width="130" class="img-responsive" alt=""></a>
-                            <a href="#"><p class="text-center">www.glitel.com</p></a>
-                        </div>
-                         <div class="col-xs-3 col-sm-2">
-                            <a href="#"><img class="img-circle img-thumbnail"  src="images/home/giof.png" height="130" width="130" class="img-responsive" alt=""></a>
-                             <a href="#"><p class="text-center">www.glitel.com</p></a>
-                        </div>
-                         <div class="col-xs-3 col-sm-2">
-                            <a href="#"><img class="img-circle img-thumbnail"  src="images/home/psp.png" height="130" width="130" class="img-responsive" alt=""></a>
-                            <a href="#"><p class="text-center">www.glitel.com</p></a>
-                        </div>
-                         <div class="col-xs-3 col-sm-2">
-                            <a href="#"><img class="img-circle img-thumbnail"  src="images/home/pkiti.png" height="130" width="130" class="img-responsive" alt=""></a>
-                            <a href="#"><p class="text-center">www.glitel.com</p></a>
-                        </div>
-                        <div class="col-xs-3 col-sm-2">
-                            <a href="#"><img class="img-circle img-thumbnail"  src="images/home/savingnature.png" height="130" width="130" class="img-responsive" alt=""></a>
-                            <a href="#"><p class="text-center">www.glitel.com</p></a>
-                        </div>
+                        <?php } } ?>
                     </marquee>
                     </div>
 					

@@ -9,9 +9,11 @@ $client = curl_init($url);
 curl_setopt($client,CURLOPT_RETURNTRANSFER,1);
 curl_setopt($client, CURLOPT_POSTFIELDS, $postdata);
 $response = curl_exec($client);
-print_r($response);
+//print_r($response);
 $result = json_decode($response);
-print_r($result);
+//print_r($result);
+
+$imagepath = "images/portfoliyo/";
 
 ?>
  
@@ -69,7 +71,7 @@ print_r($result);
                     <th>Clint Photo</th>
                     <th>Logo Title</th>
                     <th>Logo Image</th>
-                    <th>URL</th>
+                    <th>Action</th>
                     
                 
                   </tr>
@@ -78,31 +80,34 @@ print_r($result);
                   
                   <?php 
                        
-                     // $counter=0;  
-                     // foreach($result as $key => $value){
-                     // foreach($value as $key1 => $value1)
-                     //              {
+                      $counter=0;  
+                      foreach($result as $key => $value){
+                      foreach($value as $key1 => $value1)
+                      {
 
                   ?>
-
+                
                   <tr>
-                    <td class="col-md-1"><?php //echo ++$counter; ?> </td>
-                    <td><?php //echo $value1->name; ?></td>
-                    <td><?php //echo $value1->post; ?></td>
-                    <td><?php //echo $value1->fatherName; ?></td>
-                    <td><?php //echo $value1->email; ?></td>
-                    <td><?php //echo $value1->mobile; ?></td>
-                    <td><?php //echo $value1->address; ?></td>
+                    <td class="col-md-1"><?php echo ++$counter; ?> </td>
+                    <td><?php echo $value1->clientName; ?></td>
+                    <td><?php echo $value1->clientMoble; ?></td>
+                    <td><?php echo $value1->clientComment; ?></td>
+                    <td>
+                      <img src="<?php $id=$value1->id; echo $imagepath.$id."/photo_".$id.".png"; ?>" height="100px" width="100px">
+                    </td>
+                    <td><?php echo $value1->clientLogoTitle; ?></td>
+                    <td>
+                      <img src="<?php echo $imagepath.$id."/logo_".$id.".png"; ?>" height="100px" width="100px">
+                    </td>
                     <td class="col-md-1">
-                      <form action="#action/ourTeamDeletePost.php" method="post">
-                        <input type="hidden" name="team_id" value="<?php //echo $value1->id; ?>">
-                        <input type="hidden" name="image" value="<?php //echo $value1->image; ?>">
-                        <button type="submit" name="teamDelete" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                      <form action="action/portfoliyoDeletePost.php" method="post">
+                        <input type="hidden" name="id" value="<?php echo $value1->id; ?>">
+                        <button type="submit" name="delete" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                     </form>
                     </td>
                   </tr>
              
-                  <?php //} } ?>
+                  <?php } } ?>
 
                   </tbody>
                 
