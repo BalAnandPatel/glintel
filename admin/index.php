@@ -27,9 +27,9 @@
      
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="#action/loginPost.php" method="post">
+      <form action="action/loginPost.php" method="post">
         <div class="input-group mb-3">
-          <input type="email" name="user_id" class="form-control" placeholder="Email" autocomplete="off">
+          <input type="email" name="userId" class="form-control" placeholder="Email" autocomplete="off">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>

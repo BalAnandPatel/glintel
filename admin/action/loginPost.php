@@ -2,11 +2,11 @@
 
  include "../../constant.php";
 
- $url = $URL."userLogin/userLoginRead.php";
+ $url = $URL."adminLogin/adminLoginRead.php";
 
- $user_id= $_POST["user_id"];
+ $userId= $_POST["userId"];
  $password= $_POST["password"];
- $data = array( "user_id" =>$user_id, "password" =>$password);
+ $data = array( "userId" =>$userId, "password" =>$password);
  //print_r($data);
  $postdata = json_encode($data);
  $client = curl_init($url);
@@ -21,11 +21,11 @@
  //print_r($result);
 
 
- if(!$result->message == "login faild."){
- $_SESSION['login_post_success'] = " Welcome! to the dashboard";
- header('location:../dashboard.php');
- }else{
- $_SESSION['login_post_error'] = $result->message;
- header('location:../index.php');
- }
+ // if(!$result->message == "login faild."){
+ // $_SESSION['login_post_success'] = " Welcome! to the dashboard";
+ // header('location:../dashboard.php');
+ // }else{
+ // $_SESSION['login_post_error'] = $result->message;
+ // header('location:../index.php');
+// }
  ?>

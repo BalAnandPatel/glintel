@@ -16,24 +16,22 @@
                     <div class="testimonial bottom">
                         <h2>Testimonial</h2>
 						<marquee  behavior="scroll" direction="up" scrollamount="1" onmouseover="this.stop();" onmouseout="this.start();">
+                         <?php 
+                             foreach($result as $key => $value){
+                             foreach($value as $key1 => $value1)
+                            {
+                           ?>
                         <div class="media">
                             <div class="pull-left">
-                                <img class="circulars" src="images/home/mAvatar.png" alt=""/>
+                                <img class="circulars" src="<?php $id=$value1->id; echo $imagepath.$id."/photo_".$id.".png"; ?>" height="70" width="70" alt=""/>
                             </div>
                             <div class="media-body">
-                                <blockquote>Their sms solution is quite impressive.</blockquote>
-                                <h3><a href="#">- ICSD</a></h3>
+                                <blockquote><?php echo $value1->clientComment; ?></blockquote>
+                                <h3><a href="#"><?php echo $value1->clientName; ?></a></h3>
                             </div>
                          </div>
-                        <div class="media">
-                            <div class="pull-left">
-                                <a href="#"><img class="circulars" src="images/home/fAvatar.png" alt=""></a>
-                            </div>
-                            <div class="media-body">
-                                <blockquote>My clients got increased after maintenance from GlintelinIndia</blockquote>
-                                <h3><a href="">- Ajay Singh</a></h3>
-                            </div>
-                        </div> 
+                    
+                       <?php } } ?>
 </marquee>						
                     </div> 
                 </div>
@@ -58,7 +56,7 @@
                 <div class="col-md-4 col-sm-12">
                     <div class="contact-form bottom">
                         <h2>Send a message</h2>
-                        <form id="main-contact-form" name="contact-form" method="post" action="script/sendemail.php">
+                        <form iddd="main-contact-form" name="contact-form" method="post" action="script/sendemail.php">
                             <div class="form-group">
                                 <label for="cars">Service For</label>
                                 <select class="form-control" name="serviceName" required id="cars">
@@ -74,7 +72,7 @@
                                 <input type="text" name="clientName" class="form-control" autocomplete="off" required="required" placeholder="Name">
                             </div>
                                <div class="form-group">
-                                <input type="number" name="moble" class="form-control" autocomplete="off" required="required" placeholder="Mobile No.">
+                                <input type="number" name="mobile" class="form-control" autocomplete="off" required="required" placeholder="Mobile No.">
                             </div>
                             <div class="form-group">
                                 <input type="email" name="email" class="form-control" autocomplete="off" required="required" placeholder="Email Id">
@@ -83,7 +81,7 @@
                                 <input type="text" name="address" class="form-control" autocomplete="off" required="required" placeholder="Address">
                             </div>
                             <div class="form-group">
-                                <textarea name="message" id="message" required="required" autocomplete="off" class="form-control" rows="8" placeholder="Your text here"></textarea>
+                                <textarea name="clientMessage" id="message" required="required" autocomplete="off" class="form-control" rows="8" placeholder="Your text here"></textarea>
                             </div>                        
                             <div class="form-group">
                                 <input type="submit" name="submit" class="btn btn-submit" value="Submit">

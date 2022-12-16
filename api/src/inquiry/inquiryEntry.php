@@ -10,38 +10,39 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include_once '../../config/database.php';
   
 // instantiate reg object
-include_once '../../objects/payment.php';
+include_once '../../object/inquiry.php';
   
 $database = new Database();
 $db = $database->getConnection();
   
-$payment = new payment($db);
+$inquiry = new Inquiry($db);
   
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
-// print_r($data);  
+//print_r($data);  
 // make sure data is not empty
 if(
-    !empty($data->user_id) &&
-    !empty($data->amount) &&
-    !empty($data->transaction_id) &&
-    !empty($data->status) &&
-    !empty($data->created_on) &&
-    !empty($data->created_by)
+    
+    !empty($data->serviceName) &&
+    !empty($data->clientName) &&
+    !empty($data->email) &&
+    !empty($data->mobile) 
+  
 )
 
 {
-    $payment->user_id = $data->user_id;
-    $payment->amount = $data->amount;
-    $payment->transaction_id = $data->transaction_id;
-    $payment->request_id = $data->request_id;
-    $payment->status = $data->status;
-    $payment->created_by = $data->created_by;
-    $payment->created_on = $data->created_on;
+    $inquiry->serviceName = $data->serviceName;
+    $inquiry->clientName = $data->clientName;
+    $inquiry->email = $data->email;
+    $inquiry->address = $data->address;
+    $inquiry->mobile = $data->mobile;
+    $inquiry->message = $data->clientMessage;
+    $inquiry->createdOn = $data->createdOn;
+    $inquiry->createdBy = $data->createdBy;
        
     //var_dump($exam);
     // create the reg
-    if($payment->payment_entry()){
+    if($inquiry->inquiryEntry()){
 
         http_response_code(201);
         echo json_encode(array("message"=>"Successfull"));
@@ -52,7 +53,7 @@ if(
         http_response_code(503);
   
         // tell the user
-        echo json_encode(array("message" => "Unable to insert payment"));
+        echo json_encode(array("message" => "Unable to insert inquiry table"));
     }
 }
   
@@ -63,6 +64,6 @@ else{
     http_response_code(400);
   
     // tell the user
-    echo json_encode(array("message" => "Unable to insert payment. Data is incomplete."));
+    echo json_encode(array("message" => "Unable to inquiry table. Data is incomplete."));
 }
 ?>

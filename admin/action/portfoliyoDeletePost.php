@@ -21,9 +21,9 @@
   curl_setopt($client, CURLOPT_POSTFIELDS, $postdata);
   curl_setopt($client,CURLOPT_RETURNTRANSFER,true);
   $response = curl_exec($client);
-  print_r($response);    
+  //print_r($response);    
   $result = json_decode($response);
-  print_r($result);
+  //print_r($result);
 
   if($result->message == "Record has been deleted."){
 
@@ -39,7 +39,7 @@
    }
    rmdir($target_dir);
 
-  echo $msg = "Record deleted successfully";
+   $msg = "Record deleted successfully";
 
    // $_SESSION['team_delete_post'] = $msg;
 
@@ -47,11 +47,11 @@
 
   }else{
 
-  echo $msg = "Record not deleted.";
+   $msg = "Record not deleted.";
    
    // $_SESSION['team_delete_post'] = $msg;
 
-   // header('location:../ourTeamDetail.php');
+    header('location:../portfoliyoDetail.php');
   }
 
   }
