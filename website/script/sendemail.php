@@ -2,14 +2,14 @@
          include "../../constant.php";
 
          $serviceName = $_POST['serviceName'];
-         $clientName = $_POST['clientName'];
+         $clientName = ucwords($_POST['clientName']);
          $mobile = $_POST['mobile'];
          $email = $_POST['email'];
-         $address = $_POST['address'];
-         $clientMessage = $_POST['clientMessage'];
+         $address = ucwords($_POST['address']);
+         $clientMessage = ucfirst($_POST['clientMessage']);
          $date = date('d-m-Y');
          $createdOn = strtotime($date);
-         $createdBy = $_POST['clientName'];
+         $createdBy = ucwords($_POST['clientName']);
 
          $url = $URL."inquiry/inquiryEntry.php";
 

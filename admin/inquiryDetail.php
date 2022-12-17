@@ -2,7 +2,7 @@
 
 include "include/header.php";
 
-$url = $URL."ourWork/ourWorkRead.php";
+$url = $URL."inquiry/inquiryRead.php";
 $data = array();
 //print_r($data);
 $postdata = json_encode($data);
@@ -40,14 +40,7 @@ $result = json_decode($response);
     <section class="content">
       <div class="container-fluid">
 
-        <?php
-
-             if(isset($_SESSION['work_delete_post'])){ ?>
-             <div class="alert alert-danger" id="success-alert" role="alert">
-             <?php echo $_SESSION['work_delete_post']; unset($_SESSION['work_delete_post']); ?>
-             </div>
-
-       <?php } ?>
+     
 
         <div class="row">
           <div class="col-12">
@@ -62,12 +55,13 @@ $result = json_decode($response);
                   <thead>
                   <tr class="table-warning">
                     <th>S.N</th>
-                    <th>Title</th>
-                    <th>Target Amount</th>
-                    <th>Achive Amount</th>
-                    <th>Description</th>
-                    <th>image</th>
-                    <th>Actions</th>
+                    <th>Service Name</th>
+                    <th>Client Name</th>
+                    <th>Mobile No.</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Massage</th>
+                    <th>Action</th>
                 
                   </tr>
                   </thead>
@@ -84,15 +78,16 @@ $result = json_decode($response);
 
                   <tr>
                     <td class="col-md-1"><?php echo ++$counter; ?> </td>
-                    <td><?php echo $value1->title; ?></td>
-                    <td><?php echo $value1->targetAmount; ?></td>
-                    <td><?php echo $value1->achiveAmount; ?></td>
-                    <td><?php echo $value1->description; ?></td>
-                    <td class="w-25"><img src="images/work/<?php echo $value1->image; ?>" class="img-fluid img-thumbnail" alt="Sheep"></td>
+                    <td><?php echo $value1->serviceName; ?></td>
+                    <td><?php echo $value1->clientName; ?></td>
+                    <td><?php echo $value1->mobile; ?></td>
+                    <td><?php echo $value1->email; ?></td>
+                    <td><?php echo $value1->address; ?></td>
+                    <td><?php echo $value1->message; ?></td>
                     <td class="col-md-1">
-                      <form action="action/ourWorkDeletePost.php" method="post">
-                      <input type="hidden" name="work_id" value="<?php echo $value1->id; ?>">
-                      <input type="hidden" name="work_image" value="<?php echo $value1->image; ?>">
+                      <form action="#action/ourWorkDeletePost.php" method="post">
+                      <input type="hidden" name="work_id" value="<?php //echo $value1->id; ?>">
+                      <input type="hidden" name="work_image" value="<?php //echo $value1->image; ?>">
                       <button type="submit" name="workDelete" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                       </form></td>
                   </tr>

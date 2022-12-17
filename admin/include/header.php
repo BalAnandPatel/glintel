@@ -170,16 +170,17 @@ header('location:http://localhost/glintel/admin/index.php');
               </li>
               <li class="nav-item">
                 <a href="portfoliyoDetail.php" class="nav-link">
-                  <i class="fa fa-plus nav-icon"></i>
+                <i class="fa fa-arrow-right nav-icon"></i>
                   <p>Portfolio Details</p>
                 </a>
               </li>
-             <!-- <li class="nav-item">
-                <a href="ourActivity.php" class="nav-link">
-                  <i class="fa fa-plus nav-icon"></i>
-                  <p>Add Your Activities</p>
+             <li class="nav-item">
+                <a href="inquiryDetail.php" class="nav-link">
+                <i class="fa fa-arrow-right nav-icon"></i>
+                  <p>Inquiry Details</p>
                 </a>
               </li>
+              <!--
               <li class="nav-item">
                 <a href="ourEvents.php" class="nav-link">
                    <i class="fa fa-plus nav-icon"></i>

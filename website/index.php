@@ -188,7 +188,7 @@ statics/report online. User friendly interface better performance with DND filte
                     </div>
 					
                     <div class="clients-logo wow fadeIn"  data-wow-duration="1000ms" data-wow-delay="600ms">
-                    <marquee behavior="alternate" >
+                    <marquee behavior="alternate" onmouseover="this.stop();" onmouseout="this.start();">
                            <?php 
                              foreach($result as $key => $value){
                              foreach($value as $key1 => $value1)
