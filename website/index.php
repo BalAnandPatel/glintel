@@ -163,7 +163,6 @@ statics/report online. User friendly interface better performance with DND filte
          </section>       
      
          <?php
-           include "constant.php";
            $url = $URL."portfoliyo/readPortfoliyo.php";
            $data = array();
            //print_r($data);
@@ -176,7 +175,7 @@ statics/report online. User friendly interface better performance with DND filte
            $result = json_decode($response);
            //print_r($result);
  
-           $imagepath = "admin/images/portfoliyo/";
+           $imagepath = "../admin/images/portfoliyo/";
           ?>
     <section id="clients">
         <div class="container">

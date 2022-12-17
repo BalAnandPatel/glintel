@@ -1,5 +1,4 @@
 <?php
-include "../constant.php";
 include "include/header.php";
 $url = $URL."portfoliyo/readPortfoliyo.php";
 $data = array();

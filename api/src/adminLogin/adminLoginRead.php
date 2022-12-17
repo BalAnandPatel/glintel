@@ -18,14 +18,14 @@ $database = new Database();
 $db = $database->getConnection();
   
 // initialize object
-$admin = new Admin($db);
+$admin_login = new Adminlogin($db);
   
 // read products will be here
 $data = json_decode(file_get_contents("php://input"));
 //print_r($data);
 
-$admin->userId=$data->userId; 
-$admin->password=$data->password;
+$admin_login->userId=$data->userId; 
+$admin_login->password=$data->password;
 
 if(
     true
@@ -35,33 +35,33 @@ if(
 {
 
 // query products
-$stmt = $admin->adminLogin();
+$stmt = $admin_login->adminLogin();
 $num = $stmt->rowCount();
   
 // check if more than 0 record found
 if($num>0){
   
     // products array
-    $admin_arr=array();
-    $admin_arr["records"]=array();
+    $admin_login_arr=array();
+    $admin_login_arr["records"]=array();
   
     if ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
        
         extract($row);
   
-        $admin_item=array(
+        $admin_login_item=array(
             "userId" => $userId,
             "password" => $password
         );
     
-        array_push($admin_arr["records"], $admin_item);
+        array_push($admin_login_arr["records"], $admin_login_item);
     }
   
     // set response code - 200 OK
     http_response_code(200);
   
     // show products data in json format
-    echo json_encode($admin_arr);
+    echo json_encode($admin_login_arr);
 
 }
   
@@ -71,7 +71,7 @@ else{
     // set response code - 404 Not found
     http_response_code(404);
     // tell the user no products found
-    echo json_encode(array("message" => "login faild."));
+    echo json_encode(array("message"=>"login faild"));
 }
 }
 

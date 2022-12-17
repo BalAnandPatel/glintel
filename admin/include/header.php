@@ -1,3 +1,9 @@
+<?php
+include "../constant.php";
+if(!isset($_SESSION['login_post_success'])){
+header('location:http://localhost/glintel/admin/index.php');  
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

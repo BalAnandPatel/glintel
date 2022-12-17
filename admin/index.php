@@ -1,4 +1,9 @@
-
+<?php  
+session_start();
+if(isset($_SESSION['login_post_success'])){
+header('location:http://localhost/glintel/admin/dashboard.php');  
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +29,11 @@
     </div>
 
     <div class="card-body">
-     
+      <?php if(isset($_SESSION['login_post_error'])){ ?>
+      <div class="alert alert-danger" role="alert">
+       <?php echo $_SESSION['login_post_error']; ?>
+      </div>
+     <?php }else{ echo ""; } ?>
       <p class="login-box-msg">Sign in to start your session</p>
 
       <form action="action/loginPost.php" method="post">

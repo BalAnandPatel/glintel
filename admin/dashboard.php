@@ -7,7 +7,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-               
+            <?php if(isset($_SESSION['login_post_success'])){?>
+               <div class="alert alert-light" role="alert">
+                  <?php 
+                    echo $_SESSION['login_post_success'];
+                   ?>
+               </div>
+            <?php } ?>   
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

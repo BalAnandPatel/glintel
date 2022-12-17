@@ -2,6 +2,6 @@
 session_start();
 session_unset();
 session_destroy();
-header('location:https://www.savingnatures.com/admin/index.php');
+header('location:http://localhost/glintel/admin/');
 exit();
 ?>
