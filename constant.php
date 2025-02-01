@@ -2,7 +2,7 @@
 session_start();
 date_default_timezone_set('Asia/Kolkata');
 
-$BASE_URL="http://localhost/glintel/glintel";
+$BASE_URL="http://localhost/glintel";
 $URL=$BASE_URL."/api/src/";
 
 $HOME="index.php";
